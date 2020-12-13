@@ -1,0 +1,811 @@
+<!--
+
+1. 
+   * switch statement compares his parameter strictly with the cases using === . I must be aware of this.
+
+   *** The JavaScript engine first reads the code, and then runs it. The errors that occur on the reading phase are called “parse-time” errors and are unrecoverable (from inside that code). That’s because the engine can’t understand the code.
+    thats why try..catch can only handle errors that occur in valid code. Such errors are called “runtime errors” or, sometimes, “exceptions”. 
+
+
+2. // let's use shortcut of ternery operator to check if a varibale is empty or not using truthy or falsy value
+let name = ''; //if the string is empty , its returns false and if there is something , it returns true 
+console.log((name) ? name : 'Babul akter'); 
+
+
+3. // one more shortcut for real life
+let x = '';
+let mainVariable = x || 'new thing to assign'; // jehetu x ekhane false , so mainVariable e porer ta assign hobe 
+
+
+4. let isOk = true;
+isOk && console.log('everything is ok') // sudhumatro jokhon isOk true thakbe tokhon e console print hobe, noile na
+
+
+5. // first for is for line control , second for is for output; nested loop
+let x = 5;
+for ( let i = 1; i <= x; i++) {
+    let result = ''; // prothom for loop barbar result ke ekahne reset kore empty string hishebei shuru korche 
+
+    for (let j = 1; j <= i; j++) {
+        result += j + ' ';
+    }
+    console.log(result); // prothom for loop ei console ta ke print koracche
+
+
+6. // how to search for an element manually in an array
+
+let arr = [87,5,2,69,54,3];
+let find = 69;
+let isFound = false;
+
+function finder(x) {
+    for (let i = 0; i <x.length; i++) {
+        if (x[i] == find) {
+            console.log('there is ' + find + ' in the index ' + i);
+            isFound = true;
+            break;
+        }
+    } 
+    if (!isFound) {
+        console.log('data not found');  
+    }
+    return 0;
+}
+finder(arr);
+
+
+
+7. // how to reverse an array with for loop
+
+let arr = [1, 'awal', 2, 'rozoni', 3, 'ayesha'];
+
+for(let i = 0; i < (arr.length / 2); i++ ){
+    let temp = arr[i];
+    arr[i] = arr[arr.length - 1 - i];
+    arr[arr.length - 1 - i] = temp;
+}
+console.log(arr);
+
+
+8. // find Prime number
+
+function isPrime(n) {
+    for (let i = 2; i < n; i++) {
+        if ( n % i === 0) {
+             return false
+        }
+    }
+
+    if (n < 2) {
+        return false;
+    }
+    return true;
+}
+
+console.log(isPrime(2));
+
+function showPrime() {
+    let res = ``;
+for(let i = 2; i < 100; i++) {
+    if (!isPrime(i)) {
+        continue;
+    }
+    res += i + ' ';
+}
+
+return res;
+}
+
+
+console.log(showPrime());
+
+
+9. // how to find the max number from a function arguments using arguments object
+
+function func(a,b,c,d) {
+    
+    let x = -Infinity;
+
+    for (let i = 0; i < arguments.length; i++) {
+        if (arguments[i] > x) {
+            x = arguments[i];
+        }
+    }
+    return x;
+
+}
+
+console.log(func(306,5,7,59,4, .365, -789, 100,45));
+
+
+10.  my own idea to find spaces in a string 
+
+let str = `      this is a string in  this line `;
+console.log(str.match(/ /g).length);
+
+
+11.  find a text's positions in a string 
+
+let str = `As sly as a fox, as strong as an ox`;
+
+let target = 'as';
+
+let pos = -1;
+
+while ((pos = str.indexOf(target, pos + 1)) != -1) {
+    console.log( pos );
+  }
+   /* 
+    while loop to bujhen,  naki?
+sudhu vitorer logic ta?
+Niamat
+accha logic ta explain korar try korchi...
+emnite to janen j,
+jodi targeted str na pawa jay, tahole  -1 return kore.
+tai ekhane logic diche j,
+jodi -1 na hoy, tar mane jodi string er moddhe targeted value ta thake. tahole loop er vitore dhukbe. noile dhukbena
+Niamat
+r logic ta likhche eivabe j,
+prothome pos er value change korche. mane pos er value hobe 'as' er indexof value ta. tai jodi string er moddhe 'as' na thake, tahole pos er man hobe -1.
+r pos er man -1 hole eta equal -1 hoye jabe. tai while vitore condition false hoye jabe.
+r jodi string er moddhe 'as' pawa jay, tahole pos er man hobe oi index value ta.
+r sheta tokhon hobe not equal -1.
+mane condition true.
+tarpor vitore dhukbe.
+r ekhane vitore jei console log dichen, condition true hole oita to choltei thakbe.
+break korar moto kichu dile, tarpor break hobe.
+
+
+  */
+
+
+  12. get the exact middle index array property, if the array length is odd, it will decrease 1 and then calculate.
+
+  let num = [14,587,.365,-965,102,254,800,587,12,458,639];
+let arr = ['babul', 'Awal', 'Zonayed', 'rozoni', 'Yoyo', 'alaina', 'kam', 'duck'];
+
+
+function getMiddle(x) {
+    let getmiddle = 0;
+
+    if (x.length % 2 == 0) {
+        getmiddle = x.length / 2;
+    } else {
+        getmiddle = (x.length -1) / 2;
+    }
+     return getmiddle;
+}
+
+console.log(arr[getMiddle(arr)]);
+
+
+
+13. counting words in a string 
+
+let mystr = `   I'm the    king   007 !  `;  // string whose words are going to be counted (21)
+
+function countWords(str) {
+    let totalLength = str.length; //length of the string(how many characters are there)
+    let onlyLetterAndNumbers = str.replace(/[^a-zA-Z0-9]*/gi, ``).length; //counts all the letters and numbers only
+    let nonLetterAndNumbers = totalLength - onlyLetterAndNumbers; // substract all the letters and numbers from total length and get non letters length
+
+    if (onlyLetterAndNumbers != 0) { // if there is letter or numbers in the string this will be executed
+        return nonLetterAndNumbers + str.match(/[\w]+/g).length;
+    } else {  // if there is no letter or numbers in the string this will be executed
+        return nonLetterAndNumbers;
+    }
+}
+
+console.log(countWords(mystr)); // final result
+
+
+14. get a random number between two integers
+
+function getRand(max,min) {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
+console.log(getRand(20,11));
+
+
+
+15. binary to decimal converter
+
+function bintodec(bin) {
+    return parseInt(bin, 2).toString(10);
+}
+
+console.log(bintodec(101100011));
+
+
+16. Reverse a string 
+
+let str = `I am Babul Akter`;
+console.log(str.split(' ').reverse().join(' '));
+
+othoba 
+
+let mystr = 'farhan';
+function revstr(str) {
+    let rvstr = '';
+      for(let i = 0; i < str.length; i++) {
+          rvstr = str[i] + rvstr;
+      }
+      return rvstr;
+}
+
+console.log(revstr(mystr));
+
+othoba 
+   
+ let name = `My name is Awal`;
+
+let ulta = [...name].reverse().join('')
+
+console.log(ulta);
+
+
+17. patterns with for loop
+
+1 
+1 2 
+1 2 3 
+1 2 3 4 
+1 2 3 4 5 
+
+ for (let i = 1; i < 6; i++) {
+    let text = '';
+     for (let j = 1; j <= i; j++) {
+         text += j + ' ';
+     }
+     console.log(text);
+     
+}
+
+
+18. show current day and current time 
+
+'use strict';
+
+
+// Today is : Tuesday
+// Current time is : 10 PM : 30 : 38
+
+let currenttime = new Date();
+let day = currenttime.getDay();
+let nameofdays = ['Sunday', 'Saturday', 'Monday', 'Tuesday', 'Wednesday', 'Thrusday', 'friday', 'Saturday'];
+let today = nameofdays[day];
+let firstconsole = `Today is : ${today}`;
+console.log(firstconsole);
+
+
+let sec = currenttime.getSeconds();
+let minute = currenttime.getMinutes();
+
+let hour = currenttime.getHours();
+
+let prepand = (hour >= 12) ? 'PM' : 'AM';
+
+hour = (hour >= 12) ? hour - 12 : hour;
+
+
+if (hour === 0 && prepand === 'PM')  { 
+   hour = 12;
+   prepand=' PM';
+} 
+
+  if (hour === 0 && prepand === 'AM') { 
+   hour = 12;
+   prepand='AM';
+} 
+
+console.log(`current time is ${hour}${prepand} : ${minute} min : ${sec} sec`);
+
+
+
+20. remove duplicate elements from an array
+
+// Defining function to get unique values from an array
+    function getUnique(array){
+        var uniqueArray = [];
+        
+        // Loop through array values
+        for(i=0; i < array.length; i++){
+            if(uniqueArray.indexOf(array[i]) === -1) {
+                uniqueArray.push(array[i]);
+            }
+        }
+        return uniqueArray;
+    }
+    
+    var names = ["John", "Peter", "Clark", "Harry", "John", "Alice"];
+    var uniqueNames = getUnique(names);
+    console.log(uniqueNames); // Prints: ["John", "Peter", "Clark", "Harry", "Alice"]
+
+    21. callback function 
+
+    let me = {
+    name: 'Babul Akter',
+    age: 27,
+    email: 'xpawal@gmail.com'
+}
+
+function printMyself(person, cb, anothercb) {
+    cb(person.email);
+    if(person.age >= 18) {
+        anothercb(person.age);
+    }
+    return 0;
+}
+
+printMyself(me, function(email) {
+    console.log(`Email was sent to ${email}`);
+}, function(age) {
+    console.log(`Persons age's double is ${age * 2}`);
+    console.log(`Persons real age is ${age}`);
+});
+
+
+22. best example of a callback function, just calls a function and get different results on condition every time
+
+let numarr = [1,2,3,4,5];
+//this is the main function which will take an array as argument and creates a callback function as well
+function touchArr(arr,cb) {
+    for(let i = 0; i < arr.length; i++) {
+        cb(arr[i])
+    }
+}
+
+let odd = []; // an empty array is declared which will collect all odd numbers (elements) from the numarr through the callback funciton 
+let even = []; // an empty array is declared which will collect all even numbers (elements) from the numarr through the callback funciton
+let sum = 0; // a variable is declared which will store the total of the numarr elements through the callback funciton
+
+touchArr(numarr, function(v) { //main function is called and callback is pushing passed elements (odds only) to the new array called odd
+    if(v % 2 === 1) {
+        odd.push(v)
+    }
+})
+
+touchArr(numarr, function(v) { //main function is called and callback is pushing passed elements (evens only) to the new array called odd
+    if (v % 2 === 0) {
+        even.push(v)
+    }
+})
+
+touchArr(numarr, function(v) { //main function is called and callback is calculating the total of the array elements and stores in sum
+      sum += v;
+})
+
+// now see the results
+console.log(odd);
+console.log(even);
+console.log(sum);
+console.log(numarr);
+
+
+
+
+23. my first recursive function
+
+let sum = 0;
+
+function rec(n) {
+  if ( n > 10) {
+    return
+  }
+  if ( n % 2 == 1) {
+    console.log(`${sum} + ${n} = ${sum + n}`);
+    sum += n;
+  }
+   n++;
+  rec(n);
+}
+
+rec(1);
+
+console.log(`the sum of all odd number between 1 to 10 is = ${sum}`);
+
+
+
+
+24. How to add all array elements with a recursive function
+
+  let anotherarr = [1,2,3];
+let sum = 0;
+let x = 0;
+
+function amit(para) {
+   if ( x == para.length) {
+     return 0;
+   }
+   sum += para[x];
+   x++;
+   amit(para)
+}
+
+amit(anotherarr);
+console.log(sum);
+
+
+//lets make it better
+
+let awal = [1,8,-20,30,80];
+
+function rec(arr, lastIndex) {
+  if ( lastIndex < 0) {
+     return 0;
+  }
+  return arr[lastIndex] + rec(arr, (lastIndex - 1));
+}
+
+console.log(rec(awal, awal.length - 1));
+
+
+
+
+25. how to get the second max number of an array
+
+let numarr = [4,2,9,7,5,1];
+
+var secondMax = function (arr){ 
+    var max = Math.max.apply(null, arr), // get the max of the array
+        maxi = arr.indexOf(max);
+    arr[maxi] = -Infinity; // replace max in the array with -infinity
+    var secondMax = Math.max.apply(null, arr); // get the new max 
+    arr[maxi] = max;
+    return secondMax;
+};
+
+console.log(secondMax(numarr));
+console.log(numarr);
+
+
+
+26. built in array map function with callback
+
+let numarr = [1,2,3,4,5];
+
+function myMap(arr, cb) {
+    let newarr = [];
+    for(let i = 0; i < arr.length; i++) {
+        newarr.push(cb(arr[i]));
+    }
+    return newarr;
+}
+
+let x = myMap(numarr, function(v) {
+    return v * v * v ;
+})
+
+console.log(x);
+console.log(numarr);
+
+
+27. get the last word of a string 
+
+let myStr = `amar shonar bangla  hello    `;
+
+function getTheLastWord(str) {
+    let makeArray = str.trim().split(' ');
+    let lastword = makeArray[makeArray.length - 1];
+    return lastword;
+}
+
+console.log(getTheLastWord(myStr));
+
+
+
+28. how to remove double words from a string
+
+let mystr = `I am Babul      Akter Babul hello      people hello people hello hello hello helo`;
+
+function removeDouble(str) {
+    let makearray = str.split(' ');
+    let newstr = [];
+    for (let i = 0; i < makearray.length; i++) {
+        if (newstr.toString().search(makearray[i]) == -1) {
+            newstr.push(makearray[i])
+        }
+    }
+
+    return newstr.join(' ');
+}
+
+console.log(removeDouble(mystr));
+
+
+29. lets make pyramid with nested loop
+
+function makePyramid(row) {
+    for(let i = 1; i < row; i++) {
+        let output = '';
+         for(let j = 1; j <= (row - i); j++) {
+             output += ' ';
+         }
+         for(let k = 1; k <= i; k++) {
+             output += '* ';
+         }
+         console.log(output);
+    }
+}
+
+makePyramid(11);
+
+function makePyramid(row) {
+    for(let i = 1; i < row; i++) {
+        let output = '';
+        for(let j = 1; j <= i; j++) {
+            output += ' ';
+        }
+        for(let k = 1; k <= (row - i); k++) {
+            output += ' *';
+        }
+         
+         console.log(output);
+    }
+}
+
+makePyramid(11);
+
+
+30. Let's learn oop; how to cerate a base object and then create thousands of objects and inherit the methods from the main object. ekhane ekta main object er moddhe common shob method ba property thakbe. then je koyta object e ashuk na kno, sekhane code duplicate na kore tader main object theke Object.create er maddhome prototypical inheritance ghotiye shob property ba method nijer na houa sotteo use korte parbe.
+
+
+
+// constructor fuction or proto based inheritance with polymorphism
+
+function Man(name,age) {
+    this.name = name;
+    this.age = age;
+    this.eat = function() {
+        console.log(`${this.name} is eating from the constructor in Man Object`);
+    };
+}
+
+Man.prototype = {
+    walk() {
+        console.log(`${this.name} is walking from the prototype in Person Object`);
+    },
+    sleep() {
+        console.log(`${this.name} is sleeping from the prototype in Person Object`);
+    }
+}
+
+function Player(name,age,type,nationality) { 
+    Man.call(this,name,age); // ei line person er constructor ke inherit kore niye astese, eta comment korle eat method ashbe na 
+    this.type = type;
+    this.nationality = nationality;
+}
+
+Player.prototype = Object.create(Man.prototype); // eta person er proto ke inherit kortese 
+Player.prototype.constructor = Player; // jehetu inherit er jonno cricketer er constructor reset hoye jacche person er constructor e, eta abar thik korche
+
+let mushfiq = new Player('Mushfiq', 32, 'Batsman wicketkeeper', 'Bangladeshi')
+
+console.log(mushfiq.name);
+console.log(mushfiq.age);
+console.log(mushfiq.type);
+console.log(mushfiq.nationality);
+mushfiq.eat() // cricketer er contructor e person call comment korle eta kaj korbe na 
+mushfiq.walk()
+mushfiq.sleep()
+
+
+
+//class based inheritance in OOP
+
+class Master {
+    constructor() {
+
+    }
+    jonmo() {
+        console.log(`${this.name} has taken birth`);
+    }
+    biye() {
+        console.log(`${this.name} has been married now`);
+    }
+    mrittu() {
+        console.log(`${this.name} is dead now`);
+    }
+}
+
+class Person extends Master {
+    constructor(name,age) {
+        super();
+        this.name = name;
+        this.age = age;
+        this.dance = function() {
+            console.log(`${this.name} is dancing in Person constructor`);
+        }
+    }
+    eat() {
+        console.log(`${this.name} is eating in Person prototype ! yes, everything out of constructor goes to proto in class`);
+    }
+}
+
+class Cricketer extends Person {
+    constructor(name,age,type,nationality) {
+        super(name,age);
+        this.type = type;
+        this.nationality = nationality
+    }
+}
+
+let tamim = new Cricketer('tamim', 33, 'batsman', 'bangladeshi')
+
+console.log(tamim.name);
+console.log(tamim.age);
+console.log(tamim.type);
+console.log(tamim.nationality);
+tamim.jonmo()
+tamim.biye()
+tamim.mrittu()
+tamim.eat()
+tamim.dance()
+
+
+31. What is prototype?
+       prototype is nothing but just a property of a random function of javascript which actually points a javscript object basically. 
+
+
+32. object literal -> function creates and returnes object (etate new keyword lagbe na) -> new keyword diye (ekhane this naame ekta object create hoy ar oi this e return kore, hubuhu aagertar moto.. khali ekhane amake manually object create korte hobe na) -> class
+
+function person(name,age,country) {
+    // let person = {}; mash create korar somoy jodi new use na kori, taile ei line likhte hobe, maane manually amakei banate hobe
+
+    this.name = name,
+    this.age = age,
+    this.country = country
+    // return person; // new use na korle return o amakei korte hobe
+}
+
+let mash = new person('Mash', 36, 'Bangladesh');
+
+console.log(mash.country);
+
+
+33. let ar var er shobcheye boro twist 
+
+let LANGUAGE = 'java';
+let language = 'javascript'
+
+function getcalled() {
+    if(!language) {
+        let language = LANGUAGE;
+    }
+    return language;
+}
+
+console.log(`I love ${getcalled()}`);
+
+var LANGUAGE = 'java';
+var language = 'javascript'
+
+function getcalled() {
+    if(!language) {
+        var language = LANGUAGE;
+    }
+    return language;
+}
+
+console.log(`I love ${getcalled()}`);
+
+ 
+
+34. Arrow function j jehetu rest parameter same arguments object er motoi kaj kore, tai r arguments object rakhe ni .. arrow te arguments object nai .. tar bodole rest operator er oi variable tai same to same arguments er moto kaj korbe .. 
+
+
+35. সিম্বল  ইউজ  করে যা যা করা যায় : 
+ ১. অবজেক্ট  এর প্রপার্টি হাইড করা যায় 
+২. নেম কলুশন এড়ানো যায় 
+৩. ইজিলি কারেন্ট মেথড কে ওভাররাইড না করেই সেম নামে কোনো মেথড টার্গেটেড অবজেক্ট /  মাস্টার অবজেক্ট এর প্রোটোটাইপ এ ঢুকানো যায় 
+
+
+36. Iterator / Generator
+
+    kono kichu (object or anything) iterable hoite gele tar moddhe [Symbol.iterator] er nakom function er implementation thakte hobe ebong ei fnction ke call korle etar ekta iterator return korte hobe. string, array shorashori iterable. kintu object iterable na , etake iterator / generator use kore iterabol baniye nite hoy. 
+
+    abar ekta iterator er koyti protocol mante hoy, noile seta siterator hoy na. prothomoto oi iterator function ke ekta object return korte hobe, shei object er moddhe ekta next() namer method thakte hobe , shei next method ke abar emon ekta object return korte hobe jar vitor done ebong value naameer duita property thakbe.
+
+
+    iterator diye easily ekta non-iterable object iterable banano jay ebong tar upore for of loop ba rest/spread opertor use kore value ber kore ana jaay . tobe genarator aro upgraded. eta diye aro easily kaj ta kora jaay . iterator e nirdishto ekta protocol mante hoy . kintu generator jehetu ekta function, so etar moddhe ja iccha tai kora jaay.
+
+    generator function ke object er moddheo store kora jaay property / method hishebe ... othoba baire ekta alada function hishebeo use kora jay * use kore 
+
+
+37.  how to hide a property or a method using weakmap in a class ? (Symbol use kore kora jay, but oita oto effective na. iccha korle oi data te access neya jaay, but weakmap er eita joss. jehetu proto er method weakmap diye hide kora jay na ba ami ekhono pari na, tai another ke Symbol dara e hide korlam)
+    
+      let _name = new WeakMap();
+let _met = new WeakMap();
+let _another = Symbol();
+
+class Person {
+    constructor(name) {
+        _name.set(this,name);
+        _met.set(this, () => {
+            return _name.get(this,name)
+        })
+    }
+
+    [_another]() {
+        return `this method is hidden and it exists in proto`
+    }
+
+    print() {
+        console.log(_met.get(this)());
+        console.log(this[_another]());
+    }
+}
+
+let sakib = new Person(`sakib`)
+
+sakib.print()
+
+console.dir(sakib)
+
+
+
+
+38. uporer same kaj ta , but es6 er getter setter er sathe 
+
+let _name = new WeakMap();
+let _met = new WeakMap();
+let _another = Symbol();
+
+class Person {
+    constructor(name) {
+        _name.set(this,name);
+        _met.set(this, () => {
+            return _name.get(this,name)
+        })
+    }
+
+    // get name() {
+    //     return _name.get(this);
+    // }
+
+    // set name(v) {
+    //     return _name.set(this, v)
+    // }
+
+    [_another]() {
+        return `this method is hidden and it exists in proto`
+    }
+
+    print() {
+        console.log(_met.get(this)());
+        console.log(this[_another]());
+    }
+}
+
+let sakib = new Person(`sakib`)
+
+sakib.print()
+
+// sakib.name = `awal`
+
+console.log(sakib.name);
+
+
+
+
+
+39. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-->
