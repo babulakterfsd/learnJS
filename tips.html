@@ -790,9 +790,33 @@ console.log(sakib.name);
 
 
 
-39. 
+39. Make an object iterable with generator function
+
+   let obj = {
+    a: 10,
+    b: 20,
+    c: 30
+}
+
+function* itr(collection) {
+   let ele = Object.entries(collection);
+    for(let x of ele) {
+        yield x[1]
+    }
+}
+
+let iterator = itr(obj)
+
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
 
 
+
+40. 
 
 
 
