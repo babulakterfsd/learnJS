@@ -872,19 +872,21 @@ hello()
 
 
 
-43. async / await impliment 
+43. async / await impliment .... async r await hocche synchronous way te asynchronous code lekhar system .. noile promise er then likhte likhte jan sesh hoye jeto
 
-   let v = true;
+   let v = false;
 
 let promise1 = new Promise((resolve,reject) => {
-   if(v) {
-       let obj = {
-           name: `awal`
-       }
-       resolve(obj)
-   } else {
-       reject(`promise1 data rejected`)
-   }
+   setTimeout(() => {
+    if(v) {
+        let obj = {
+            name: `awal`
+        }
+        resolve(obj)
+    } else {
+        reject(`promise1 data rejected`)
+    }
+   }, 3000)
 })
 
 let promise2 = (para) => {
@@ -897,14 +899,19 @@ let promise2 = (para) => {
     })
 }
 
-
 async function syncFunc() {
-    let result = await promise1;
+    try {
+        let result = await promise1;
     let final = await promise2(result)
     console.log(final);
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 syncFunc()
+
+console.log(`hello`);
 
 
 44. 
