@@ -816,7 +816,124 @@ console.log(iterator.next());
 
 
 
-40. 
+40. Asynchronous javascript 
+  
+     let takeOrder = (customer, callback) => {
+    console.log(`take order from ${customer}`);
+    callback()
+}
+
+let processOrder = (customer,callback) => {
+    console.log(`cooking is being started for ${customer}`);
+    setTimeout(() => {
+       console.log(`cooking has been completed after 3 seconds..`);
+       callback()
+    },3000);
+}
+
+let orderComplete = (customer,callback) => {
+    setTimeout(() => {
+        console.log(`order has been processed for ${customer} after 5 seconds`);
+        callback()
+    },5000)
+}
+
+let billing = (customer) => {
+    console.log(`${customer} has paid the bill`);
+}
+
+takeOrder(`Babul`, () => {
+    processOrder(`Babul`, () => {
+        orderComplete(`Babul`, () => {
+            billing(`Babul`)
+        })
+    })
+})
+
+console.log(`hello`);
+
+
+
+42. web api ar callback queue browser e kivabe kaj kore ta bojhar jonno er cheye valo udahoron r hote par e na 
+
+function hello() {
+    console.log(`first line`);
+    let func = () => {
+        setTimeout(() => {
+           console.log(`line under settimeout`);
+        },3000)
+    }
+    console.log(func());
+    console.log(`second line`);
+    console.log(func());
+}
+
+hello()
+
+
+
+43. async / await impliment 
+
+   let v = true;
+
+let promise1 = new Promise((resolve,reject) => {
+   if(v) {
+       let obj = {
+           name: `awal`
+       }
+       resolve(obj)
+   } else {
+       reject(`promise1 data rejected`)
+   }
+})
+
+let promise2 = (para) => {
+    return new Promise((resolve,reject) => {
+        if(v) {
+            resolve(para.name)
+        } else {
+            reject(`code rejected from promise2`)
+        }
+    })
+}
+
+
+async function syncFunc() {
+    let result = await promise1;
+    let final = await promise2(result)
+    console.log(final);
+}
+
+syncFunc()
+
+
+44. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
