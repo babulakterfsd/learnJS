@@ -922,12 +922,38 @@ syncFunc()
 console.log(`hello`);
 
 
-44. 
+44. how to send an ajax request
+     
+function getReq(method,url,callback) {
+    let xhr = new XMLHttpRequest();
+    xhr.open(method,url);
+    xhr.onreadystatechange = () => {
+        if(xhr.readyState == 4) {
+            if(xhr.status == 200) {
+                let res = JSON.parse(xhr.response)
+                callback(null,res)
+            } else {
+                callback(xhr.status,null)
+            }
+        }
+    }
+    xhr.send()
+}
+
+getReq(`get`,`https://jsonplaceholder.cypress.io/todos/`, (err,res) => {
+   if(err) {
+       console.log(err);
+   } else {
+       res.forEach(element => {
+           console.log(element.title);
+       });
+   }
+})
 
 
 
 
-
+45. 
 
 
 
