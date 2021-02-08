@@ -853,6 +853,41 @@ takeOrder(`Babul`, () => {
 console.log(`hello`);
 
 
+// an example of Promise chaining
+  
+let hasMeeting = false;
+
+let meeting = new Promise((resolve,reject) => {
+  if(!hasMeeting) {
+    let meeting = {
+      name: `techniqal meeting`,
+      place: `online`,
+      time: `3rd june, 2021`
+    }
+    resolve(meeting)
+  } else {
+    reject(new Error(`Meeting has already been scheduled`))
+  }
+})
+
+let newFunc = (meetingResult) => {
+  return Promise.resolve(`The meeting time is scheduled at ${meetingResult.time}`)
+}
+
+let lastPromise = (jaIccha) => {
+  return Promise.resolve(typeof jaIccha)
+}
+
+meeting
+ .then(newFunc)
+ .then(lastPromise)
+ .then((res) => {
+   console.log(res);
+ }).catch((err) => {
+   console.log(err.message);
+ })
+
+
 
 42. web api ar callback queue browser e kivabe kaj kore ta bojhar jonno er cheye valo udahoron r hote par e na 
 
