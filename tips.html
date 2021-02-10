@@ -988,11 +988,47 @@ getReq(`get`,`https://jsonplaceholder.cypress.io/todos/`, (err,res) => {
 
 
 
-45. 
+45. final example of promise , async, await
+
+let r = true;
+let promiseone = () => {
+    return new Promise((resolve,reject) => {
+        if(r) {
+            let obj = {
+                name: `Awal`,
+                age: 28
+            }
+            resolve(obj)
+        } else {
+            reject(new Error(`promise has been rejected`))
+        }
+    })
+}
+
+let promisetwo = (res) => {
+    return new Promise((resolve,reject) => {
+        if(res) {
+            resolve(res.age)
+        } else {
+            reject(new Error(`object creation failed in the first promise`))
+        }
+    })
+}
+
+let caller = async() => {
+    try {
+        let first = await promiseone();
+    let second = await promisetwo(first)
+    console.log(second);
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+caller()
 
 
 
-
+46. 
 
 
 
