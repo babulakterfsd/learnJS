@@ -1076,7 +1076,56 @@ async function taker() {
 taker()
 
 
-47. 
+47. promise chain and async await function 
+
+  let hello = true;
+let promiseOne = new Promise((resolve,reject) => {
+    if(hello) {
+        let obj = {
+            name: `Awal`,
+            age: 28
+        }
+        resolve(obj)
+    } else {
+        reject(new Error(`Promise rejected`))
+    }
+})
+let promiseTwo = (gottendata) => {
+    return new Promise((resolve,reject) => {
+        if(gottendata) {
+            resolve(gottendata)
+        } else {
+            console.log(new Error(`Promise rejected in the first stage`));
+        }
+    })
+}
+let caller = async() => {
+   try {
+    let first = await promiseOne;
+    let result = await promiseTwo(first);
+    console.log(`${result.name} is ${result.age} years old`)
+   } catch (error) {
+       console.log(error);
+   }
+}
+
+caller()
+
+
+
+48. 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
