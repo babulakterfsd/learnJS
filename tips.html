@@ -1054,10 +1054,29 @@ caller()
 
 
 
-46. 
+46. lets make a custom delay function
+   
+   console.log(`line one`);
+
+let delay = (sec) => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve()
+        },sec * 1000)
+    })
+}
+
+async function taker() {
+    await delay(3)
+    console.log(`hello`);
+    await delay(8);
+    console.log(`world`);
+}  
+
+taker()
 
 
-
+47. 
 
 
 
