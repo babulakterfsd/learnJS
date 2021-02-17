@@ -3,15 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./index.css">
-    <title>let's explore javascript</title>
+    <link rel="stylesheet" href="bootstrap4-4-1.min.css">
+    <link rel="stylesheet" href="index.css">
+    <title>Learning DOM</title>
 </head>
 <body>
 
+   <div class="container-fluid">
+       <div class="row">
+           <div class="col-12 bg-dark text-white">
+            <p id="para" class="paragraph" style="display: inline;">This is a paragraph</p>
+            <img src="babulakter.JPG" alt="me" id="myimg" class="imgme" style="height: 200px; width: 200px;">
+            <a href="http://google.com" id="mylink" class="linkme">visit google</a>
+            <div class="animation" id="myanimation">
+            hello
+            </div>
+            <button id="mybtn" class="btnme btn btn-success" >click here</button>
+           </div>
+       </div>
+   </div>
 
-    <p id="demo" style="font-weight: bolder; color: brown;"></p>
-
-
-    <script src="./main.js"></script>
+<script src="jquery-3.3.1.min.js"></script>
+<script src="bootstrap4-4-1.min.js"></script>
+<script src="main.js"></script>
 </body>
 </html>
