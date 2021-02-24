@@ -1131,17 +1131,50 @@ document.getElementById(`mybtn`).addEventListener((`click`),() => {
 
 
 
-49. 
+49. data ene list akare dom e show korano
+
+  document.getElementById(`btn`).addEventListener((`click`),()=> {
+    
+     async function hello () {
+        let myfetcher = await fetch(`https://jsonplaceholder.cypress.io/todos`);
+        let makejson = await myfetcher.json();
+        let result = await makejson;
+        for(let i = 0; i < 10; i++) {
+            creator(result[i])
+        }
+    }
+
+    hello()
+
+    function creator(data) {
+        let li = document.createElement(`li`);
+        li.innerHTML = `${data.id}. ${data.title}`;
+        li.style.listStyle = `none`;
+        li.style.border = `1px solid grey`;
+        li.style.textAlign = `center`
+        let parent = document.getElementById(`myul`);
+        parent.appendChild(li)
+    }
+})
 
 
 
+50. kono list element er samne number boshano 
+
+  let liItems = document.getElementById(`myul`).children
+let makeArray = Array.from(liItems); // [...listItems] ei spread opertaor o kaj korbe ekhane easily 
+
+let text;
+
+document.getElementById(`btn`).addEventListener((`click`),() => {
+    for(let i = 0; i < makeArray.length; i++) {
+         text = makeArray[i].innerHTML
+         makeArray[i].innerHTML = i + 1 + `. ` + text
+     }
+})
 
 
-
-
-
-
-
+51. 
 
 
 
