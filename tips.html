@@ -1113,11 +1113,25 @@ caller()
 
 
 
-48. 
+48. how to create an element with DOM
+  let caller = (elementName,yourText,yourParent,before) => {
+    let myElement = document.createElement(elementName);
+    myElement.style.display = `inline-block`;
+    myElement.style.marginLeft = `25px`;
+    let myElementText = document.createTextNode(yourText)
+    myElement.appendChild(myElementText);
+    let parentElement = document.getElementById(yourParent);
+    let insertBefore = document.getElementById(before)
+    parentElement.insertBefore(myElement,insertBefore)
+}
+
+document.getElementById(`mybtn`).addEventListener((`click`),() => {
+    caller(`p`,`text created by Awal`,`haha`,`shower`)
+})
 
 
 
-
+49. 
 
 
 
