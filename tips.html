@@ -1174,7 +1174,247 @@ document.getElementById(`btn`).addEventListener((`click`),() => {
 })
 
 
-51. 
+51. remove list item 
+    let liList = document.getElementById(`myul`).children;
+let arrayOfLi = Array.from(liList)
+
+arrayOfLi.forEach((li) => {
+    li.addEventListener((`click`),()=> {
+        li.remove()
+    })
+})
+
+
+52. event delegation
+  let liList = document.getElementById(`myul`).children;
+let arrayOfLi = Array.from(liList)
+
+arrayOfLi.forEach((li) => {
+    li.addEventListener((`click`),(e)=> {
+        document.getElementById(`shower`).innerHTML = e.target.innerHTML;
+        li.remove()
+    })
+})
+
+
+53. checkbox output most complex thing
+
+  <form action="index.html" id="myform">
+                 <div class="form-check">
+                     <input type="checkbox" id="myck1" value="Ten" name="awal">
+                     <label for="myck1">Ten</label>
+                 </div>
+                 <div class="form-check">
+                    <input type="checkbox" id="myck2" value="Eleven" name="awal">
+                    <label for="myck2">Eleven</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="myck3" value="Twelve" name="awal">
+                    <label for="myck3">Twelve</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="myck4" value="Thirteen" name="awal">
+                    <label for="myck4">Thirteen</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" id="myck5" value="Fourteen" name="awal">
+                    <label for="myck5">Fourteen</label>
+                </div>
+            </form>
+    
+    let finalparent = document.getElementById(`selected`);
+let boxes = document.getElementsByName(`awal`);
+let checkNum = [];
+
+[...boxes].forEach((box) => {
+    box.addEventListener((`change`),function(e) {
+        if(e.target.checked) {
+            checkNum.push(e.target.value);
+            outputTheResult(finalparent,checkNum)
+        } else {
+           let index = checkNum.indexOf(e.target.value)
+           checkNum.splice(index,1)
+           outputTheResult(finalparent,checkNum)
+        }
+    })
+})
+
+function outputTheResult(parent,numArray) {
+    let result = ``;
+    numArray.forEach((num,ind) => {
+        result += `${ind+1}.${num}  `;
+    })
+    parent.innerHTML = result;
+}
+
+
+
+54. take li inner text from an input box
+
+   document.getElementById(`btn`).addEventListener((`click`),function(e) {
+    let li = document.getElementById(`lione`).cloneNode(true);
+    let parent = document.getElementById(`myul`)
+    parent.appendChild(li)
+})
+
+let ul = document.getElementById(`myul`);
+
+ul.addEventListener((`dblclick`),function(event) {
+    if(this.contains(event.target)) {
+        let text = event.target.innerHTML;
+        event.target.innerHTML = ``;
+        let inputbox = inp(text)
+        event.target.appendChild(inputbox)
+        inputbox.addEventListener((`keypress`),function(e) {
+            if(e.key == `Enter`) {
+                event.target.innerHTML = e.target.value
+            }
+        })
+    }
+})
+
+function inp(text) {
+    let inp = document.createElement(`input`);
+    inp.type = `text`;
+    inp.className = `form-control`;
+    inp.value = text;
+
+    return inp
+}
+
+
+
+55. collect form data from form and send to server as object
+
+///// stack learner way
+
+let form = document.getElementById(`form`);
+
+form.addEventListener((`submit`),function(e){
+    e.preventDefault();
+
+    let makeobj = {};
+
+    [...this.elements].forEach((element) => {
+        if(element.name != `submit` && element.name != `remember`) {
+            makeobj[element.name] = element.value;
+
+            /* jodi bootsrap ba onno karone kono empty object element thake setake remove korbe ei code  */
+             if(makeobj[``] == ``) { 
+                 delete makeobj[``]
+             }
+        }
+    })
+    
+    console.log(makeobj);
+    this.reset()
+})
+
+
+
+///// my way 
+
+    let form = document.getElementById(`form`);
+
+form.addEventListener((`submit`),function(e) {
+     e.preventDefault()
+     let values = [];
+     let elements = this.elements;
+     let elementArray = Array.from(elements);
+     elementArray.forEach(element => {
+         if(element.value != `submit`) {
+             values.push(element.value)
+         }
+     }); 
+     let makeobj = {};
+     makeobj.name = values[0];
+     makeobj.email = values[1];
+     makeobj.password = values[2];
+     makeobj.country = values[3];
+
+     console.log(makeobj);
+
+     for(let i = 0; i < (elementArray.length - 2); i++) {
+           elementArray[i].value = ``;
+     }
+     
+})
+
+
+
+
+
+
+56. How to post data and get a server response
+
+  let form= document.getElementById(`form`);
+let ul = document.getElementById(`shower`);
+let url = `https://jsonplaceholder.typicode.com/posts`;
+
+function limaker(data) {
+    let li = document.createElement(`li`);
+    li.innerHTML = `${data.id}. Title is ${data.title} and body is ${data.body}`;
+    li.style.listStyle = `none`;
+    return li;
+}
+
+
+form.addEventListener(`submit`, function(event) {
+    event.preventDefault();
+
+    let title = this.title.value || undefined;
+    let body = this.body.value || undefined;
+
+    if(title && body) {
+        let makeobj = {
+            title,
+            body
+        }
+
+        fetch(url,{
+            method: `POST`,
+            headers: {
+                'content-type': 'Application/JSON'
+            },
+            body: JSON.stringify(makeobj)
+        })
+         .then(result => result.json())
+         .then(data => {
+            let item = limaker(data);
+            ul.appendChild(item);
+            this.reset();
+         })
+         .catch(e => console.log(e.message))
+
+    }
+
+})
+
+
+
+57. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
